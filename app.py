@@ -11,7 +11,7 @@ a real client's info and you have a sellable product in minutes.
 
 Setup:
     pip install -r requirements.txt
-    export GEMINI_API_KEY="AQ.Ab8RN6Jk2pvxBJLdX_rKLPIdjBahdCW94duDiV3ELFXQlAj_6Q"
+    export GROQ_API_KEY="your-key-here"
     python app.py
 
 Then open http://localhost:5000
@@ -19,12 +19,11 @@ Then open http://localhost:5000
 
 import os
 from flask import Flask, request, jsonify, send_from_directory
-from google import genai
-from google.genai import types
+from groq import Groq
 
 app = Flask(__name__, static_folder="static", static_url_path="")
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # ---------------------------------------------------------------------------
 # CUSTOMIZE THIS PER CLIENT — this block is the entire "integration" for a
@@ -83,25 +82,20 @@ def chat():
     if not history:
         return jsonify({"error": "No messages provided"}), 400
 
-    # Gemini uses "model" instead of "assistant" for the AI's turns.
-    gemini_history = [
-        types.Content(
-            role="model" if m["role"] == "assistant" else "user",
-            parts=[types.Part(text=m["content"])],
-        )
-        for m in history
+    # Groq uses the standard OpenAI-style format: role is "user" or
+    # "assistant", plus a "system" message at the start for instructions.
+    groq_messages = [{"role": "system", "content": SYSTEM_PROMPT}] + [
+        {"role": m["role"], "content": m["content"]} for m in history
     ]
 
     try:
-        response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=gemini_history,
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                max_output_tokens=400,
-            ),
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",  # fast + free, great for a support widget
+            messages=groq_messages,
+            max_tokens=400,
         )
-        return jsonify({"reply": response.text})
+        reply_text = response.choices[0].message.content
+        return jsonify({"reply": reply_text})
 
     except Exception as e:
         import traceback

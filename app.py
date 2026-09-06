@@ -90,7 +90,7 @@ def chat():
 
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",  # fast + free, great for a support widget
+            model="openai/gpt-oss-120b",  # fast + free, great for a support widget
             messages=groq_messages,
             max_tokens=400,
         )

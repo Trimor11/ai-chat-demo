@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria Bella Vista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Springfield, Orchard Lane</p>
+    <h1>Trattoria<br>Bella Vista</h1>
+    <p class="tagline">Slow-cooked Italian food, family recipes, no shortcuts.</p>
+  </div>
+  <div class="hero-hours">
+    <h2>Hours</h2>
+    <dl>
+      <div class="row"><dt>Tue&ndash;Thu</dt><dd>5:00pm&ndash;10:00pm</dd></div>
+      <div class="row"><dt>Fri&ndash;Sat</dt><dd>5:00pm&ndash;11:00pm</dd></div>
+      <div class="row"><dt>Sunday</dt><dd>12:00pm&ndash;9:00pm</dd></div>
+      <div class="row"><dt>Monday</dt><dd>Closed</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main class="menu-section">
+  <h2>A few favorites</h2>
+  <ul class="dish-list">
+    <li><span class="dish-name">Margherita Pizza</span><span class="dish-price">$16</span></li>
+    <li><span class="dish-name">Tagliatelle al Ragù</span><span class="dish-price">$19</span></li>
+    <li><span class="dish-name">Branzino al Forno</span><span class="dish-price">$27</span></li>
+    <li><span class="dish-name">Tiramisù</span><span class="dish-price">$9</span></li>
+  </ul>
+  <p class="menu-note">Full menu available in-house &mdash; ask our host about vegetarian and gluten-free options.</p>
+</main>
+
+<!-- Chat widget -->
+<div id="chat-launcher" aria-label="Chat with Bella Vista">
+  <span class="launcher-label">Ask us anything</span>
+</div>
+
+<div id="chat-panel" class="hidden">
+  <div class="chat-header">
+    <div>
+      <p class="chat-title">Bella Vista</p>
+      <p class="chat-subtitle">Usually replies in seconds</p>
+    </div>
+    <button id="chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="chat-messages"></div>
+  <form id="chat-form">
+    <input id="chat-input" type="text" placeholder="Ask about hours, menu, reservations…" autocomplete="off" />
+    <button type="submit" aria-label="Send">Send</button>
+  </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

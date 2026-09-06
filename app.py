@@ -11,7 +11,7 @@ a real client's info and you have a sellable product in minutes.
 
 Setup:
     pip install -r requirements.txt
-    export GROQ_API_KEY="your-key-here"
+    export GROQ_API_KEY="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"
     python app.py
 
 Then open http://localhost:5000

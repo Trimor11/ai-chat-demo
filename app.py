@@ -104,6 +104,8 @@ def chat():
         return jsonify({"reply": response.text})
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": f"AI service error: {str(e)}"}), 500
 
 

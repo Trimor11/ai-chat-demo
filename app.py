@@ -13,7 +13,7 @@ a real client's info and you have a sellable product in minutes.
  
 Setup:
     pip install -r requirements.txt
-    export GEMINI_API_KEY="your-key-here"
+    export GEMINI_API_KEY="AQ.Ab8RN6Jk2pvxBJLdX_rKLPIdjBahdCW94duDiV3ELFXQlAj_6Q"
     python app.py
  
 Then open http://localhost:5000

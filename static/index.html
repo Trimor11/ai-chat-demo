@@ -11,6 +11,13 @@
 <body>
 
 <header class="hero">
+  <svg class="hero-motif" viewBox="0 0 200 200" aria-hidden="true">
+    <path d="M100 20 C130 40 150 70 150 100 C150 140 128 170 100 180 C72 170 50 140 50 100 C50 70 70 40 100 20 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M100 35 L100 165" stroke="currentColor" stroke-width="1"/>
+    <path d="M100 60 C85 65 75 75 72 88" stroke="currentColor" stroke-width="1" fill="none"/>
+    <path d="M100 90 C115 95 125 105 128 118" stroke="currentColor" stroke-width="1" fill="none"/>
+    <path d="M100 120 C85 125 75 135 72 148" stroke="currentColor" stroke-width="1" fill="none"/>
+  </svg>
   <div class="hero-inner">
     <p class="kicker">Springfield, Orchard Lane</p>
     <h1>Trattoria<br>Bella Vista</h1>
@@ -27,16 +34,72 @@
   </div>
 </header>
 
+<section class="story">
+  <p>Bella Vista opened in 2003 in a converted carriage house on Orchard Lane. Every sauce is still made from scratch, every night, the way our nonna taught us &mdash; slow, unhurried, and never the same recipe rushed.</p>
+</section>
+
 <main class="menu-section">
   <h2>A few favorites</h2>
   <ul class="dish-list">
-    <li><span class="dish-name">Margherita Pizza</span><span class="dish-price">$16</span></li>
-    <li><span class="dish-name">Tagliatelle al Ragù</span><span class="dish-price">$19</span></li>
-    <li><span class="dish-name">Branzino al Forno</span><span class="dish-price">$27</span></li>
-    <li><span class="dish-name">Tiramisù</span><span class="dish-price">$9</span></li>
+    <li>
+      <svg class="dish-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 20 L34 20 L24 38 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="21" cy="25" r="1.6" fill="currentColor"/>
+        <circle cx="26" cy="27" r="1.6" fill="currentColor"/>
+        <circle cx="24" cy="22" r="1.6" fill="currentColor"/>
+      </svg>
+      <div class="dish-text">
+        <span class="dish-name">Margherita Pizza</span>
+        <span class="dish-desc">San marzano tomato, fresh mozzarella, basil</span>
+      </div>
+      <span class="dish-price">$16</span>
+    </li>
+    <li>
+      <svg class="dish-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 18 Q24 14 34 18 Q30 30 24 34 Q18 30 14 18 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M18 20 Q24 24 30 20" fill="none" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <div class="dish-text">
+        <span class="dish-name">Tagliatelle al Ragù</span>
+        <span class="dish-desc">Slow-cooked beef &amp; pork ragù</span>
+      </div>
+      <span class="dish-price">$19</span>
+    </li>
+    <li>
+      <svg class="dish-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 24 Q20 16 30 24 Q20 32 14 24 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M30 24 L36 20 M30 24 L36 28" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <circle cx="18" cy="22" r="1" fill="currentColor"/>
+      </svg>
+      <div class="dish-text">
+        <span class="dish-name">Branzino al Forno</span>
+        <span class="dish-desc">Oven-roasted sea bass, lemon, capers</span>
+      </div>
+      <span class="dish-price">$27</span>
+    </li>
+    <li>
+      <svg class="dish-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="16" y="17" width="16" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M16 22 L32 22" stroke="currentColor" stroke-width="1"/>
+        <path d="M20 22 L20 31 M28 22 L28 31" stroke="currentColor" stroke-width="0.8"/>
+      </svg>
+      <div class="dish-text">
+        <span class="dish-name">Tiramisù</span>
+        <span class="dish-desc">Made in-house daily</span>
+      </div>
+      <span class="dish-price">$9</span>
+    </li>
   </ul>
   <p class="menu-note">Full menu available in-house &mdash; ask our host about vegetarian and gluten-free options.</p>
 </main>
+
+<footer class="site-footer">
+  <p>221 Orchard Lane, Springfield &middot; (555) 010-2938</p>
+</footer>
 
 <!-- Chat widget -->
 <div id="chat-launcher" aria-label="Chat with Bella Vista">

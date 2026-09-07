@@ -3,57 +3,66 @@ const panel = document.getElementById("chat-panel");
 const closeBtn = document.getElementById("chat-close");
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
-const messages = document.getElementById("chat-messages");
+const messagesEl = document.getElementById("chat-messages");
 
-function addMessage(text, kind = "bot") {
-  const bubble = document.createElement("div");
-  bubble.className = `msg ${kind}`;
-  bubble.textContent = text;
-  messages.appendChild(bubble);
-  messages.scrollTop = messages.scrollHeight;
-  return bubble;
+let history = [];
+
+function addMessage(role, text) {
+  const div = document.createElement("div");
+  div.className = `msg ${role}`;
+  div.textContent = text;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  return div;
 }
 
 function openChat() {
   panel.classList.remove("hidden");
   launcher.classList.add("hidden");
-  launcher.setAttribute("aria-expanded", "true");
-
-  if (!messages.children.length) {
-    addMessage("Hi, welcome to Bella Vista. Ask us about hours, menu items, or reservations.");
+  if (history.length === 0) {
+    addMessage("bot", "Ciao! I'm the virtual host for Bella Vista. Ask me about hours, the menu, reservations, or allergens.");
   }
-
   input.focus();
 }
 
 function closeChat() {
   panel.classList.add("hidden");
   launcher.classList.remove("hidden");
-  launcher.setAttribute("aria-expanded", "false");
-  launcher.focus();
 }
 
 launcher.addEventListener("click", openChat);
 closeBtn.addEventListener("click", closeChat);
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
   const text = input.value.trim();
   if (!text) return;
 
-  addMessage(text, "user");
+  addMessage("user", text);
+  history.push({ role: "user", content: text });
   input.value = "";
 
-  const typing = addMessage("Thinking...", "bot typing");
-  setTimeout(() => {
-    typing.remove();
-    addMessage("Thanks. We’ll get back to you shortly. For bookings, please call the restaurant directly.");
-  }, 700);
-});
+  const typingEl = addMessage("bot typing", "Typing…");
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !panel.classList.contains("hidden")) {
-    closeChat();
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history }),
+    });
+    const data = await res.json();
+
+    typingEl.remove();
+
+    if (data.error) {
+      addMessage("bot", "Sorry, something went wrong on our end. Please call us at (555) 010-2938.");
+      return;
+    }
+
+    addMessage("bot", data.reply);
+    history.push({ role: "assistant", content: data.reply });
+  } catch (err) {
+    typingEl.remove();
+    addMessage("bot", "I'm having trouble connecting right now — please try again in a moment.");
   }
 });
